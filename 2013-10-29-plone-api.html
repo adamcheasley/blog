@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Someplace nice - Plone.API</title>
+    <link rel="stylesheet" type="text/css" href="../../newstyle.css"/>
+  </head>
+
+  <body>
+
+    <div id="content">
+      <h1><a href="/">Someplace nice</a></h1>
+      <div id="description">
+        <div>
+          <p id="nav_container">
+            <a href="http://www.someplacenice.co.uk">Home</a>
+            <span class="dim">/</span>
+            Blog
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/projects.html">Projects</a>
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/contact.html">Contact</a>
+
+          </p>
+        </div>
+      </div>
+
+      <div class="post">
+
+        <div class="labels">
+          <div class="date">
+            October 29
+          </div>
+        </div>
+
+        <div class="regular">
+
+          <h2>
+            <a href="/blog">
+              plone.api
+            </a>
+          </h2>
+
+          <div id="post-body">
+            <p>I recently attended Plone Conference 2012, in Arnhem, Holland. As usual the conference was great, with some excellent talks. One of the main talks that caught my attention, was the talk on plone.api. </p>
+            <p>I had heard bits and pieces about an api for plone a couple of months prior, but had yet to look into it further. My initial reaction was, &#8220;why didn&#8217;t we think of this before?&#8221;. There are parts of plone and zope, that are quite inconsistent. Naming conventions change around quite a bit and imports can be from obscure parts of different eggs, so an api to simplify the main jobs that we do 80% of the time is a great idea.</p>
+            <p>I was lucky enough to be able to stay for the sprints, so I got involved in plone.api along with some other plone people. It's still in the beta phase so there were a few functions that hadn't been implemented yet, but by the end of the sprints, we&#8217;d filled in most of the gaps.</p>
+            <p>The great thing about this api, is it makes regular tasks like content creation, user manipulation and creating and manipulating groups really easy. Here is an example of how you would get the portal with plone.api:</p>
+            <p><code>from plone import api<br/> portal = api.portal.get()</code></p>
+            <p>Which is so much easier to remember than either using the porta_url tool or the plone_portal_state multiadapter. Creating content is just as easy:</p>
+            <p><code> from plone import api<br/> # First get the portal<br/> portal = api.portal.get()<br/><br/># Now we can create a document<br/> doc= api.content.create(<br/> type='Document',<br/> title='My Content',<br/> container=portal)</code></p>
+            <p>One last example, getting a user:</p>
+            <p><code> from plone import api<br/> user = api.user.get(username='adam')</code></p>
+            <p>plone.api is just about in beta phase now, but it's definitely worth checking out. You can read more here: <a href="http://ploneapi.readthedocs.org/en/0.1b1/" title="plone.api">read the docs</a></p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>
