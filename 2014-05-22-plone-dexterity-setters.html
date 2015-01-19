@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Someplace nice - Plone Dexterity setters</title>
+    <link rel="stylesheet" type="text/css" href="../../newstyle.css"/>
+  </head>
+
+  <body>
+
+    <div id="content">
+      <h1><a href="/">Someplace nice</a></h1>
+      <div id="description">
+        <div>
+          <p id="nav_container">
+            <a href="http://www.someplacenice.co.uk">Home</a>
+            <span class="dim">/</span>
+            Blog
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/projects.html">Projects</a>
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/contact.html">Contact</a>
+
+          </p>
+        </div>
+      </div>
+
+      <div class="post">
+
+        <div class="labels">
+          <div class="date">
+            May 22
+          </div>
+        </div>
+
+        <div class="regular">
+
+          <h2>
+            <a href="/blog">
+              Plone: Acquisition and Dexterity mutators
+            </a>
+          </h2>
+
+          <div id="post-body">
+          <p>
+	    A strange property of putting logic in dexterity content types
+	    has bitten me a couple of times. Here's the issue;
+	    You are advised, if you wish to override the given accessors and
+	    mutators of the object, to do something like the following:
+	    <pre>
+	      @property
+	      def my_field(self):
+	        # get some attribute
+
+	      @my_field.setter
+	      def my_field(self, value):
+                # do something else before setting the value
+	    </pre>
+	    This is fine, and is a usual python convention, *except* that
+	    the 'self' object will not be acquisition wrapped.
+          </p>
+	  <p>
+	    This means that if you try to do anything which relies on acquisition,
+	    which is pretty much anything in Plone, then you will run into problems.
+	    If you find that you are running into permissions issues, or authentication
+	    issues in code within your object, it's probably to do with this issue.
+	  </p>
+	  <p>
+	    The simple fix here would just be to change the setter to something like:
+	    <pre>
+	      def set_my_field(self, value):
+                # do something else before setting the value
+	    </pre>
+	    'self' would now be acquisition wrapped.
+	  </p>
+	  <p>
+	    The other option of course is to move any business logic like this
+	    out of the model, which is probably what I would advise.
+	  </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>
