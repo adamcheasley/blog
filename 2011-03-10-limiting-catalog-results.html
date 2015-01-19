@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Someplace nice - Plone Limiting Catalog Search Results </title>
+    <link rel="stylesheet" type="text/css" href="../../newstyle.css"/>
+  </head>
+
+  <body>
+
+    <div id="content">
+      <h1><a href="/">Someplace nice</a></h1>
+      <div id="description">
+        <div>
+          <p id="nav_container">
+            <a href="http://www.someplacenice.co.uk">Home</a>
+            <span class="dim">/</span>
+            Blog
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/projects.html">Projects</a>
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/contact.html">Contact</a>
+
+          </p>
+        </div>
+      </div>
+
+      <div class="post">
+
+        <div class="labels">
+          <div class="date">
+            March 10
+          </div>
+        </div>
+
+        <div class="regular">
+
+          <h2>
+            <a href="/blog">
+              Plone: Limiting catalog search results
+            </a>
+          </h2>
+
+          <div id="post-body">
+          <p>
+            After some confusion today regarding the "sort_limit" index in plone's
+            catalog, I discovered the following:</p>
+            <p>
+              <blockquote>
+              <span>The sort_limit is only a hint for the search algorhitms and
+                can potentially return a few more items, so it's preferable to use
+                both <code>sort_limit</code> and slicing simultaneously</span>
+              </blockquote>
+            </p>
+            <p>
+              So something like this:<br />
+              <pre>
+                limit = 10
+                results = portal_catalog.searchResult(
+                  portal_type='Folder'
+                  sort_limit=limit)
+                return results[:limit]
+              </pre>
+            </p>
+          <p>
+            Discovered this on the following page and it seems like a good
+            resource for any question regarding catalog indexing in plone:
+            <span>
+              <a title="Querying the catalog"
+                 target="_blank"
+                 href="http://plone.org/documentation/manual/developer-manual/indexing-and-searching/querying-the-catalog">
+                querying-the-catalog
+              </a>
+            </span>
+          </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>
