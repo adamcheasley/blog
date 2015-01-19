@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Someplace nice - </title>
+    <link rel="stylesheet" type="text/css" href="../../newstyle.css"/>
+  </head>
+
+  <body>
+
+    <div id="content">
+      <h1><a href="/">Someplace nice</a></h1>
+      <div id="description">
+        <div>
+          <p id="nav_container">
+            <a href="http://www.someplacenice.co.uk">Home</a>
+            <span class="dim">/</span>
+            Blog
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/projects.html">Projects</a>
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/contact.html">Contact</a>
+
+          </p>
+        </div>
+      </div>
+
+      <div class="post">
+
+        <div class="labels">
+          <div class="date">
+            April 1
+          </div>
+        </div>
+
+        <div class="regular">
+
+          <h2>
+            <a href="/blog">
+              Plone: Content icons for Archetypes and Dexterity
+            </a>
+          </h2>
+
+          <div id="post-body">
+            <p>
+              Due to the slow move from Archetypes to Dexterity, I have been dealing
+              with a lot of sites recently that contain both Archetypes and Dexterity
+              content types mixed together. For the most part this works fine, but there
+              are a few places where you find yourself writing different code depending
+              on which type of object you have at any one time.
+            </p>
+            <p>
+              A perfect example of this came up recently; when trying to list
+              objects within a folder that were from both types. The problem came
+              when trying to show icons for these objects. In Archetypes, you could
+              simply do:<br /><br />
+              <code>
+                plone_view.getIcon()
+              </code><br />
+              <br />
+              This would return you an object which implements IContentIcon, on which
+              you would usually call the html_tag method. This would give you a fully
+              formed img tag which you could put straight into a template. With
+              dexterity, this is now deprecated.
+            </p>
+            <p>
+              The difference with dexterity is that in an Archetypes definition of
+              a content type, you would define a content_icon property:<br /><br />
+              <code>
+                &lt;property name="content_icon"&gt;MyType.gif&lt;/property&gt;
+              </code><br /><br />
+              where as in dexterity, we now define an icon expression:<br /><br />
+              <code>
+                &lt;property name="icon_expr"&gt;string:++resource++my.package/images/my_type.png&lt;/property&gt;
+              </code><br /><br />
+              The former is assumed to be in a skins folder, the latter is an expression
+              containing the path to the image.
+            </p>
+            <p>
+              The fix here involves using the portal types tool and this handy function
+              from CMFCore called 'createExprContext':<br /><br />
+              <pre>
+                from Products.CMFCore.Expression import createExprContext
+
+                portal_types_tool = api.portal.get_tool('portal_types')
+                type_info = portal_types_tool.getTypeInfo(portal_type)
+                icon_ob = type_info.getIconExprObject()
+                portal = api.portal.get()
+                exp_context = createExprContext(
+                portal, portal, portal)
+                return icon_ob(exp_context)
+              </pre>
+            </p>
+	    <p>
+	      This will return an absolute path to the icon in the context of the
+	      portal. This can then be used in tal for either archetypes or dexterity.
+	    </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>
