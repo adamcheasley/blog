@@ -44,7 +44,24 @@
           </h2>
 
           <div id="post-body">
-
+	    <p>
+	      At ploneconf 2014, Matthew Sital-Singh and I gave a talk on using
+	      relstorage in Plone. Our main use case for this was that one of our
+	      biggest sites still uses FileStorage in the ZODB, which means that
+	      this file and zeo are a single point of failure.
+	    </p>
+	    <p>
+	      Switching your plone site from using FileStorage to using RelStorage
+	      is quite simple. You can simply add the following to your buildout,
+	      under the instance part:
+	    </p>
+	    <code>
+	      rel-storage =
+	      	type postgresql
+	      	db plone
+	      	user plone
+	      	passwd PASSWORD
+	    </code>
           </div>
 
         </div>
