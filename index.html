@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Someplace nice - Blog</title>
+    <link rel="stylesheet" type="text/css" href="../newstyle.css"/>
+  </head>
+  <body>
+
+    <div id="content">
+      <h1><a href="/">Someplace nice</a></h1>
+      <div id="description">
+        <div>
+          <p id="nav_container">
+            <a href="http://www.someplacenice.co.uk">Home</a>
+            <span class="dim">/</span>
+            Blog
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/projects.html">Projects</a>
+            <span class="dim">/</span>
+            <a href="http://www.someplacenice.co.uk/contact.html">Contact</a>
+
+          </p>
+        </div>
+      </div>
+
+<div class="post"><div class="post"><div class="labels"><div class="date">2014-05-22</div></div><div class="regular"><h2><a href="posts/2014-05-22-plone-dexterity-setters.html">
+  Plone: Acquisition and Dexterity mutators</a></h2><div id="post-body">A strange property of putting logic in dexterity content types has bitten me a couple of times. Here's the issue; You are advised, if you wish to override the given accessors and mutators of the object, to do something like the following: @property def my_field(self): # get some attribute @my_field.setter...</div></div></div></div><div class="post"><div class="post"><div class="labels"><div class="date">2014-04-01</div></div><div class="regular"><h2><a href="posts/2014-04-01-plone-content-icons.html">Plone: Content icons for Archetypes and Dexterity</a></h2><div id="post-body">Due to the slow move from Archetypes to Dexterity, I have been dealing with a lot of sites recently that contain both Archetypes and Dexterity content types mixed together. For the most part this works fine, but there are a few places where you find yourself writing different code depending...</div></div></div></div><div class="post"><div class="post"><div class="labels"><div class="date">2013-10-29</div></div><div class="regular"><h2><a href="posts/2013-10-29-plone-api.html">plone.api</a></h2><div id="post-body">I recently attended Plone Conference 2012, in Arnhem, Holland. As usual the conference was great, with some excellent talks. One of the main talks that caught my attention, was the talk on plone.api. I had heard bits and pieces about an api for plone a couple of months prior, but...</div></div></div></div><div class="post"><div class="post"><div class="labels"><div class="date">2012-06-23</div></div><div class="regular"><h2><a href="posts/2012-06-23-plone-zope-events.html">Plone "events"</a></h2><div id="post-body">Recently I was looking for a list of all events available in plone. By "events" what I actually mean is: Zope provides an events system. Various components (e.g the standard add and edit forms) notify any number of event subscribers (also known as event handlers) of a particular event. So...</div></div></div></div><div class="post"><div class="post"><div class="labels"><div class="date">2011-03-10</div></div><div class="regular"><h2><a href="posts/2011-03-10-limiting-catalog-results.html">Plone: Limiting catalog search results</a></h2><div id="post-body">After some confusion today regarding the "sort_limit" index in plone's catalog, I discovered the following: The sort_limit is only a hint for the search algorhitms and can potentially return a few more items, so it's preferable to use both sort_limit and slicing simultaneously So something like this: limit = 10...</div></div></div></div>
+    </div>
+  </body>
+</html>
